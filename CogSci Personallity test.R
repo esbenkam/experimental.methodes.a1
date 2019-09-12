@@ -1,3 +1,7 @@
+pacman::p_load(ggplot2, tidyr, tidyverse)
+
+?p_load
+
 cogsci <- read.csv("data/NEW_CogSciPersonalityTest2019.csv", header = TRUE, sep=",")
 
 cogsci <- NEW_CogSciPersonalityTest2019
@@ -19,6 +23,8 @@ count(cogsci$birth_day > "2019-01-01")
 cogsci.query1 <- filter(cogsci, birth_day < "2019-01-01")
 summary(cogsci.query1)
 
+ggplot(cogsci, aes(x = shoesize, fill = gender)) + 
+  geom_bar()
 
 
 
