@@ -34,39 +34,51 @@ view(shoes_bigfoot)
 male_lefthand <- filter(cogsci, gender == "male" & handedness == "Left-handed")
 view(male_lefthand)
 
+#Frane kun med folk der hedder Pernille eller Gustav
 pernille_gustav <- filter(cogsci, name == "Pernille" | name == "Gustav")
 view(pernille_gustav)
 
+#Frame med folk med skostørrelse over 38. (Starter altså på 39)
 shoes_39 <- filter(cogsci, shoesize > 38)
 view(shoes_39)
 
+#Her finder jeg de måder man kan have svaret på i dette spørgsmål
 levels(cogsci$touch_floor)
 
+#Et frame med kun folk som kan finde ud af at nå jorden
 touch_floor <- filter(cogsci, touch_floor == "Yes, of course!!" | touch_floor == "Yes")
 view(touch_floor)
 
+#Her finder jeg gennemsnittet af, hvor langt tid folk kan holde vejret
 mean(cogsci$breath_hold)
 
-breath_mean <- filter(cogsci, breath_hold > 55.77112)
+#Og laver en frame med dem som kan holde over
+breath_mean <- filter(cogsci, breath_hold > 55.77113)
 view(breath_mean)
 
+#Her laver jeg en frame med dem som kan balancere ballonen mellem 13 og 60 sekunder.  
 ballon_1360 <- filter(cogsci, balloon_balance > 13 & balloon_balance < 60)
 view(ballon_1360)
 
+#Her har jeg så lavet en frame med alle de tidliger kriteriere.
+det_hele <- filter(cogsci, balloon_balance > 13 & balloon_balance < 60 & shoesize > 38 & touch_floor == "Yes, of course!!" | touch_floor == "Yes" & breath_hold > 55.77113 & balloon_balance > 13 & balloon_balance < 60)
+view(det_hele)
 
+#Her har jeg lavet en frame med dem der var langsomt til tongue twister øverst
+slow_tongue <- arrange(cogsci, desc(tongue_twist))
+view(slow_tongue)
 
+#Her skulle man finde den der var bedst til Romberg forsøget, men man skulle selv definere hvad bedst var. Så jeg tog og lavede en ny kolone hvor jeg havde summen af de to værdier. Så tog jeg og sortere den, så den der samlet havde stået kortest tid, var den bedste.
+cogsci$romber_total <- cogsci$romberg_open + cogsci$romberg_closed
+best_romberg <- arrange(cogsci, romber_total)
+view(best_romberg)
 
+#Her skulle man prøve, at se, hvis man tager og vælger samme kolone to gange, og der sker ikke rigtig noget.
+select(cogsci, name, name)
 
-
-
-
-
-
-
-
-
-
-
+#Når man laver den første vektor og sætter den i select, tager den de værdier som passer med overskrifterne, lidt lige som hvis man selv bare havde skrevet det ind.
+vars <- c("name", "shoesize", "touch_floor")
+select(cogsci, vars)
 
 
 
