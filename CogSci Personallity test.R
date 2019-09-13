@@ -53,7 +53,7 @@ view(touch_floor)
 mean(cogsci$breath_hold)
 
 #Og laver en frame med dem som kan holde over
-breath_mean <- filter(cogsci, breath_hold > 55.77113)
+breath_mean <- filter(cogsci, breath_hold > mean(cogsci$breath_hold))
 view(breath_mean)
 
 #Her laver jeg en frame med dem som kan balancere ballonen mellem 13 og 60 sekunder.  
@@ -83,14 +83,18 @@ select(cogsci, vars)
 #Nu skal jeg omrokere min frame, så gender og shoesize kommer først og derefter alt det andet. Her kan jeg udnyttet, at man kun kan vælge en kolone én gang. Jeg vælger først gender, shoesize og derefter alt andet.
 vars_2 <- select(cogsci, "gender", "shoesize", everything())
 
-
+#Her laver jeg en ny kolone, hvor man kan se hvor mange ord i sekundet de forskellige når
 cogsci$words_per_sec <- 99 %/% cogsci$tongue_twist
 
+#Nu finder jeg først ud af, hvor mange minutter folk har kunne holde vejret. Her udnyttet jeg, at R altid runder ned af.
+cogsci$breath_min <- cogsci$breath_hold %/% 60
+
+#Så kan jeg finde sekunderne, ved at tage det samlede antal sekunder som de har holdt vejret og trukket det antal minutter de kan holde vejret gange med 60.
+cogsci$breath_sec <- cogsci$breath_hold - (cogsci$breath_min * 60)
 
 
-
-
-
+ggplot(cogsci, aes(x = breath_hold, y = balloon)) + 
+  geom_point()
 
 
 
