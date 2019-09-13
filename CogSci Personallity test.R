@@ -80,18 +80,11 @@ select(cogsci, name, name)
 vars <- c("name", "shoesize", "touch_floor")
 select(cogsci, vars)
 
+#Nu skal jeg omrokere min frame, så gender og shoesize kommer først og derefter alt det andet. Her kan jeg udnyttet, at man kun kan vælge en kolone én gang. Jeg vælger først gender, shoesize og derefter alt andet.
+vars_2 <- select(cogsci, "gender", "shoesize", everything())
 
 
-
-
-
-
-
-
-
-
-
-
+cogsci$words_per_sec <- 99 %/% cogsci$tongue_twist
 
 
 
