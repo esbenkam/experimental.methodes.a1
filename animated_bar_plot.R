@@ -4,6 +4,8 @@ library(RColorBrewer)
 library(tidyverse)
 library(tweenr)
 
+install.packages("googleVis")
+
 # Read in the data set.
 #data = read_csv(input_file,
 #                col_names = TRUE,
@@ -82,8 +84,5 @@ saveGIF({
       theme(plot.margin = unit(c(0.2, 1, 0.2, 0.2), "cm"))
     print(p)
   }
-}, movie.name = "~/Desktop/output_file.gif", interval = 0.01, ani.width = 720, ani.height = 480)
-
-
-
+}, movie.name = "output_file.gif", interval = 0.01, ani.width = 720, ani.height = 480)
 

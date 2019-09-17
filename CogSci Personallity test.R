@@ -91,7 +91,10 @@ cogsci$breath_min <- cogsci$breath_hold %/% 60
 
 #Så kan jeg finde sekunderne, ved at tage det samlede antal sekunder som de har holdt vejret og trukket det antal minutter de kan holde vejret gange med 60.
 cogsci$breath_sec <- cogsci$breath_hold - (cogsci$breath_min * 60)
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2a9f0ec6d782474f56daa21e7446ce22d03cd26a
 
 ggplot(cogsci, aes(x = breath_hold, y = balloon)) + 
   geom_point()
